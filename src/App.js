@@ -3,36 +3,34 @@ import Todo from "./Todo";
 import {Container, List, Paper} from "@material-ui/core";
 import "./App.css"
 import AddTodo from "./AddTodo";
+import {call} from "./service/ApiService";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            glossaries: []
         };
     }
 
     componentDidMount() {
-        const requestOptions = {
-            method: "GET",
-            headers: {"Content-Type": "application/json"},
-        };
-
-        fetch("http://localhost:8080/todo", requestOptions)
-            .then((response) => response.json())
-            .then(
-                (response) => {
-                    this.setState({
-                        items: response.items,
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        error,
-                    });
-                }
-            );
+        call("/glossaries", "GET", null).then((response) => {
+            this.setState({items: response.data.glossaries})
+        })
     }
+
+    /*add = (item) => {
+        call("/todo", "POST", item).then((response) => {
+            this.setState({items: response.data})
+        })
+    }*/
+
+    /*delete = (item) => {
+        call("/todo", "DELETE", item).then((response) => {
+            this.setState({items: response.data})
+        })
+    }*/
 
     add = (item) => {
         const thisItems = this.state.items;
