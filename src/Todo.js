@@ -10,6 +10,7 @@ class Todo extends React.Component {
             glossary: props.glossary,
             readOnly: true
         };
+        this.update = props.update;
         this.delete = props.delete;
     }
 
@@ -35,6 +36,9 @@ class Todo extends React.Component {
         if (e.key === 'Enter') {
             this.setState({readOnly: true});
         }
+        const thisGlossary = this.state.glossary;
+        thisGlossary.title = e.target.value;
+        this.update(thisGlossary);
     }
 
     checkboxEventHandler = (e) => {
