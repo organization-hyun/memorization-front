@@ -13,12 +13,11 @@ class App extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     call("/glossaries", "GET", null).then((response) => {
-    //         console.log("이 녀석", response);
-    //         this.setState({glossaries: response.glossaries});
-    //     });
-    // }
+    componentDidMount() {
+        call("/glossaries", "GET", null).then((response) => {
+            this.setState({glossaries: response.glossaries});
+        });
+    }
 
     add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
