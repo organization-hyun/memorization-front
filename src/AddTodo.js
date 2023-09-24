@@ -4,20 +4,20 @@ import {Button, Grid, Paper, TextField} from "@material-ui/core";
 class AddTodo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {item: {title: ""}} // 사용자의 입력을 저장할 오브젝트
+        this.state = {glossary: {title: ""}} // 사용자의 입력을 저장할 오브젝트
         this.add = props.add; // props의 함수를 this.add로 연결
     }
 
     onInputChange = (e) => {
-        const thisItem = this.state.item;
-        thisItem.title = e.target.value;
-        this.setState({item: thisItem})
-        console.log(thisItem);
+        const thisGlossary = this.state.glossary;
+        thisGlossary.title = e.target.value;
+        this.setState({glossary: thisGlossary})
+        console.log(thisGlossary);
     }
 
     onButtonClick = () => {
-        this.add(this.state.item);
-        this.setState({item: {title: ""}})
+        this.add(this.state.glossary);
+        this.setState({glossary: {title: ""}})
     }
 
     enterKeyEventHandler = (e) => {
@@ -35,7 +35,7 @@ class AddTodo extends React.Component {
                             placeholder="Add Todo here"
                             fullWidth
                             onChange={this.onInputChange}
-                            value={this.state.item.title}
+                            value={this.state.glossary.title}
                             onKeyPress={this.enterKeyEventHandler}
                         />
                     </Grid>

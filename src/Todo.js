@@ -6,19 +6,22 @@ class Todo extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {item: props.item, readOnly: true};
+        this.state = {
+            glossary: props.glossary,
+            readOnly: true
+        };
         this.delete = props.delete;
     }
 
     editEventHandler = (e) => {
-        const thisItem = this.state.item;
-        thisItem.title = e.target.value;
-        this.setState({item: thisItem});
+        const thisGlossary = this.state.glossary;
+        thisGlossary.title = e.target.value;
+        this.setState({glossary: thisGlossary});
     }
 
     // 함수 추가
     deleteEventHandler = () => {
-        this.delete(this.state.item);
+        this.delete(this.state.glossary);
     }
 
     offReadOnlyMode = () => {
@@ -35,16 +38,16 @@ class Todo extends React.Component {
     }
 
     checkboxEventHandler = (e) => {
-        const thisItem = this.state.item;
-        thisItem.done = !thisItem.done;
-        this.setState({item: thisItem});
+        const thisGlossary = this.state.glossary;
+        thisGlossary.done = !thisGlossary.done;
+        this.setState({glossary: thisGlossary});
     }
 
     render() {
-        const item = this.state.item;
+        const glossary = this.state.glossary;
         return (
             <ListItem>
-                <Checkbox checked={item.done}
+                <Checkbox checked={glossary.done}
                           onChange={this.checkboxEventHandler}
                           disableRipple/>
                 <ListItemText>
@@ -54,9 +57,9 @@ class Todo extends React.Component {
                             readOnly: this.state.readOnly,
                         }}
                         type="text"
-                        id={item.id} // 각 리스트를 구분하려고 id를 연결
-                        name={item.id} // 각 리스트를 구분하려고 id를 연결
-                        value={item.title}
+                        id={glossary.id} // 각 리스트를 구분하려고 id를 연결
+                        name={glossary.id} // 각 리스트를 구분하려고 id를 연결
+                        value={glossary.title}
                         multiline={true}
                         fullWidth={true}
                         onClick={this.offReadOnlyMode}

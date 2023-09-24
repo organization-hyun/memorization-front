@@ -9,55 +9,59 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
             glossaries: []
         };
     }
 
     // componentDidMount() {
     //     call("/glossaries", "GET", null).then((response) => {
+    //         console.log("이 녀석", response);
     //         this.setState({glossaries: response.glossaries});
     //     });
     // }
 
-    /*add = (item) => {
-        call("/todo", "POST", item).then((response) => {
-            this.setState({items: response.data})
+    add = (glossary) => {
+        call("/glossaries", "POST", glossary).then((response) => {
+            const thisGlossaries = this.state.glossaries;
+            glossary.id = response;
+            glossary.done = false;
+            thisGlossaries.push(glossary);
+            this.setState({glossaries: thisGlossaries})
         })
     }
 
-    delete = (item) => {
-        call("/todo", "DELETE", item).then((response) => {
-            this.setState({items: response.data})
-        })
+    // delete = (glossary) => {
+    //     call("/glossaries", "DELETE", glossary).then((response) => {
+    //         this.setState({items: response.data})
+    //     })
+    // }
+
+    /*add = (glossary) => {
+        const thisGlossaries = this.state.glossaries;
+        glossary.id = "ID-" + thisGlossaries.length; // key를 위한 id 추가
+        glossary.done = false; // done 초기화
+        thisGlossaries.push(glossary); // 리스트에 아이템 초기화
+        this.setState({glossaries: thisGlossaries}); // 업데이트는 반드시 this.setState를 통해 진행
+        console.log("glossaries: ", this.state.glossaries);
     }*/
 
-    add = (item) => {
-        const thisItems = this.state.items;
-        item.id = "ID-" + thisItems.length; // key를 위한 id 추가
-        item.done = false; // done 초기화
-        thisItems.push(item); // 리스트에 아이템 초기화
-        this.setState({items: thisItems}); // 업데이트는 반드시 this.setState를 통해 진행
-        console.log("items: ", this.state.items);
-    }
-
-    delete = (item) => {
-        const thisItems = this.state.items;
-        console.log("Before Update Items : ", this.state.items);
-        const newItems = thisItems.filter(e => e.id !== item.id);
-        this.setState({items: newItems}, () => {
+    delete = (glossary) => {
+        const thisGlossaries = this.state.glossaries;
+        console.log("Before Update Glossaries : ", this.state.glossaries);
+        const newGlossaries = thisGlossaries.filter(e => e.id !== glossary.id);
+        this.setState({glossaries: newGlossaries}, () => {
             // 디버깅 콜백
-            console.log("Update Items : ", this.state.items);
+            console.log("Update Items : ", this.state.glossaries);
         });
     }
 
 
     render() {
-        var todoItems = this.state.items.length > 0 && (
+        var todoGlossaries = this.state.glossaries.length > 0 && (
             <Paper style={{margin: 16}}>
                 <List>
-                    {this.state.items.map((item, idx) => (
-                        <Todo item={item} key={item.id} delete={this.delete}/>
+                    {this.state.glossaries.map((glossary, idx) => (
+                        <Todo glossary={glossary} key={glossary.id} delete={this.delete}/>
                     ))}
                 </List>
             </Paper>
@@ -67,7 +71,7 @@ class App extends React.Component {
             <div className="App">
                 <Container maxWidth="md">
                     <AddTodo add={this.add}/>
-                    <div className="TodoList">{todoItems}</div>
+                    <div className="TodoList">{todoGlossaries}</div>
                 </Container>
             </div>
         )
