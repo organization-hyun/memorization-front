@@ -29,31 +29,14 @@ class App extends React.Component {
         })
     }
 
-    // delete = (glossary) => {
-    //     call("/glossaries", "DELETE", glossary).then((response) => {
-    //         this.setState({items: response.data})
-    //     })
-    // }
-
-    /*add = (glossary) => {
+    delete = (id) => {
+        call("/glossaries/" + id, "DELETE", id).then((response) => {
+            this.setState({items: response.data})
+        })
         const thisGlossaries = this.state.glossaries;
-        glossary.id = "ID-" + thisGlossaries.length; // key를 위한 id 추가
-        glossary.done = false; // done 초기화
-        thisGlossaries.push(glossary); // 리스트에 아이템 초기화
-        this.setState({glossaries: thisGlossaries}); // 업데이트는 반드시 this.setState를 통해 진행
-        console.log("glossaries: ", this.state.glossaries);
-    }*/
-
-    delete = (glossary) => {
-        const thisGlossaries = this.state.glossaries;
-        console.log("Before Update Glossaries : ", this.state.glossaries);
-        const newGlossaries = thisGlossaries.filter(e => e.id !== glossary.id);
-        this.setState({glossaries: newGlossaries}, () => {
-            // 디버깅 콜백
-            console.log("Update Items : ", this.state.glossaries);
-        });
+        const newGlossaries = thisGlossaries.filter(e => e.id !== id);
+        this.setState({glossaries: newGlossaries});
     }
-
 
     render() {
         var todoGlossaries = this.state.glossaries.length > 0 && (

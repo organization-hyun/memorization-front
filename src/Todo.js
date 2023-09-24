@@ -21,7 +21,7 @@ class Todo extends React.Component {
 
     // 함수 추가
     deleteEventHandler = () => {
-        this.delete(this.state.glossary);
+        this.delete(this.state.glossary.id);
     }
 
     offReadOnlyMode = () => {
