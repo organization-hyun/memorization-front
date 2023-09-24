@@ -14,19 +14,19 @@ class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-        call("/glossaries", "GET", null).then((response) => {
-            this.setState({items: response.data.glossaries})
-        })
-    }
+    // componentDidMount() {
+    //     call("/glossaries", "GET", null).then((response) => {
+    //         this.setState({glossaries: response.glossaries});
+    //     });
+    // }
 
     /*add = (item) => {
         call("/todo", "POST", item).then((response) => {
             this.setState({items: response.data})
         })
-    }*/
+    }
 
-    /*delete = (item) => {
+    delete = (item) => {
         call("/todo", "DELETE", item).then((response) => {
             this.setState({items: response.data})
         })
