@@ -49,7 +49,7 @@ class App extends React.Component {
     }
 
     render() {
-        var todoGlossaries = this.state.glossaries.length > 0 && (
+        var glossaries = this.state.glossaries.length > 0 && (
             <Paper style={{margin: 16}}>
                 <List>
                     {this.state.glossaries.map((glossary, idx) => (
@@ -63,7 +63,7 @@ class App extends React.Component {
             <div className="App">
                 <Container maxWidth="md">
                     <AddTodo add={this.add}/>
-                    <div className="TodoList">{todoGlossaries}</div>
+                    <div className="TodoList">{glossaries}</div>
                 </Container>
             </div>
         )
