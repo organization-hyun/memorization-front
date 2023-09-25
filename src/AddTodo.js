@@ -12,7 +12,6 @@ class AddTodo extends React.Component {
         const thisGlossary = this.state.glossary;
         thisGlossary.title = e.target.value;
         this.setState({glossary: thisGlossary})
-        console.log(thisGlossary);
     }
 
     onButtonClick = () => {
