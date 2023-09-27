@@ -5,21 +5,19 @@ import "./App.css"
 import AddTodo from "./AddTodo";
 import {call} from "./service/ApiService";
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            glossaries: []
-        };
-    }
+function App() {
 
-    componentDidMount() {
+    const [glossaries, setGlossaries] = React.useState([]);
+
+    React.useEffect(() => {
         call("/glossaries", "GET", null).then((response) => {
-            this.setState({glossaries: response.glossaries});
+            {
+                setGlossaries(response.glossaries);
+            }
         });
-    }
+    })
 
-    add = (glossary) => {
+    const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
             const thisGlossaries = this.state.glossaries;
             glossary.id = response;
@@ -29,8 +27,7 @@ class App extends React.Component {
         })
     }
 
-    // TODO DTO 생성
-    update = (glossary) => {
+    const update = (glossary) => {
         call("/glossaries/" + glossary.id, "PUT", glossary);
         const thisGlossaries = this.state.glossaries;
         const newGlossaries = thisGlossaries.map(e => {
@@ -41,34 +38,30 @@ class App extends React.Component {
         this.setState({glossaries: newGlossaries});
     }
 
-    delete = (id) => {
+    const remove = (id) => {
         call("/glossaries/" + id, "DELETE", id);
         const thisGlossaries = this.state.glossaries;
         const newGlossaries = thisGlossaries.filter(e => e.id !== id);
         this.setState({glossaries: newGlossaries});
     }
 
-    render() {
-        var glossaries = this.state.glossaries.length > 0 && (
-            <Paper style={{margin: 16}}>
-                <List>
-                    {this.state.glossaries.map((glossary, idx) => (
-                        <Todo glossary={glossary} key={glossary.id} update={this.update} delete={this.delete}/>
-                    ))}
-                </List>
-            </Paper>
-        );
+    return (
+        <div className="App">
+            <Container maxWidth="md">
+                <AddTodo add={add}/>
+                <div className="TodoList">
+                    <Paper style={{margin: 16}}>
+                        <List>
+                            {glossaries.map((glossary) => (
+                                <Todo glossary={glossary} key={glossary.id} update={update} remove={remove}/>
+                            ))}
+                        </List>
+                    </Paper>
+                </div>
+            </Container>
+        </div>
+    );
 
-        return (
-            <div className="App">
-                <Container maxWidth="md">
-                    <AddTodo add={this.add}/>
-                    <div className="TodoList">{glossaries}</div>
-                </Container>
-            </div>
-        )
-
-    }
 }
 
 export default App;
