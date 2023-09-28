@@ -2,8 +2,7 @@ import React from 'react';
 import {Checkbox, IconButton, InputBase, ListItem, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 
-class Todo extends React.Component {
-
+class Glossary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +10,7 @@ class Todo extends React.Component {
             readOnly: true
         };
         this.update = props.update;
-        this.delete = props.delete;
+        this.remove = props.remove;
     }
 
     editEventHandler = (e) => {
@@ -22,7 +21,7 @@ class Todo extends React.Component {
 
     // 함수 추가
     deleteEventHandler = () => {
-        this.delete(this.state.glossary.id);
+        this.remove(this.state.glossary.id);
     }
 
     offReadOnlyMode = () => {
@@ -74,7 +73,7 @@ class Todo extends React.Component {
 
                 <ListItemSecondaryAction>
                     <IconButton
-                        aria-label="Delete Todo"
+                        aria-label="Delete Glossary"
                         onClick={this.deleteEventHandler}>
                         <DeleteOutlined/>
                     </IconButton>
@@ -84,4 +83,4 @@ class Todo extends React.Component {
     }
 }
 
-export default Todo;
+export default Glossary;

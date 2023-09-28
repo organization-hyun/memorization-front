@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Grid, Paper, TextField} from "@material-ui/core";
 
-class AddTodo extends React.Component {
+class AddGlossary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {glossary: {title: ""}} // 사용자의 입력을 저장할 오브젝트
@@ -31,7 +31,7 @@ class AddTodo extends React.Component {
                 <Grid container>
                     <Grid xs={11} md={11} item style={{paddingRight: 16}}>
                         <TextField
-                            placeholder="Add Todo here"
+                            placeholder="Add Glossary here"
                             fullWidth
                             onChange={this.onInputChange}
                             value={this.state.glossary.title}
@@ -53,4 +53,4 @@ class AddTodo extends React.Component {
     }
 }
 
-export default AddTodo;
+export default AddGlossary;
