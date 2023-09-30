@@ -52,7 +52,7 @@ function App() {
                     <Paper style={{margin: 16}}>
                         <List>
                             {glossaries.map(glossary => (
-                                <Glossary glossary={glossary} key={glossary.id} update={update} remove={remove}/>
+                                <Glossary glossary={glossary} update={update} remove={remove}/>
                             ))}
                         </List>
                     </Paper>
