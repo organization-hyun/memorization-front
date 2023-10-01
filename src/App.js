@@ -26,9 +26,8 @@ function App() {
 
     const update = (glossary) => {
         call("/glossaries/" + glossary.id, "PUT", glossary);
-        const thisGlossaries = glossaries;
-        const newGlossaries = thisGlossaries.map(e => {
-            if (e.id !== glossary.id) {
+        const newGlossaries = glossaries.map(e => {
+            if (e.id === glossary.id) {
                 e.title = glossary.title;
             }
         });
@@ -48,8 +47,8 @@ function App() {
                 <div className="GlossaryList">
                     <Paper style={{margin: 16}}>
                         <List>
-                            {glossaries.map(v => (
-                                <Glossary key={v.id} glossary={v} update={update} remove={remove}/>
+                            {glossaries.map((v, i) => (
+                                <Glossary key={i} glossary={v} update={update} remove={remove}/>
                             ))}
                         </List>
                     </Paper>
