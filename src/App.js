@@ -4,7 +4,6 @@ import {Container, List, Paper} from "@material-ui/core";
 import "./App.css"
 import AddGlossary from "./AddGlossary";
 import {call} from "./service/ApiService";
-import Gugudan from "./practice/Gugudan";
 
 function App() {
 
@@ -12,17 +11,16 @@ function App() {
 
     React.useEffect(() => {
         call("/glossaries", "GET", null).then((response) => {
-            {setGlossaries(response.glossaries);}
+            setGlossaries(response.glossaries);
         });
     }, [])
 
     const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
-            const thisGlossaries = glossaries;
             glossary.id = response;
             glossary.done = false;
-            thisGlossaries.push(glossary);
-            setGlossaries(thisGlossaries)
+            glossaries.push(glossary);
+            setGlossaries(glossaries);
         })
     }
 
@@ -46,13 +44,12 @@ function App() {
     return (
         <div className="App">
             <Container maxWidth="md">
-                <Gugudan/>
                 <AddGlossary add={add}/>
                 <div className="GlossaryList">
                     <Paper style={{margin: 16}}>
                         <List>
-                            {glossaries.map(glossary => (
-                                <Glossary glossary={glossary} update={update} remove={remove}/>
+                            {glossaries.map(v => (
+                                <Glossary key={v.id} glossary={v} update={update} remove={remove}/>
                             ))}
                         </List>
                     </Paper>
