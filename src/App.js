@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Glossary from "./Glossary";
 import {Container, List, Paper} from "@material-ui/core";
 import "./App.css"
@@ -7,18 +7,17 @@ import {call} from "./service/ApiService";
 
 function App() {
 
-    const [glossaries, setGlossaries] = React.useState([]);
+    const [glossaries, setGlossaries] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         call("/glossaries", "GET", null).then((response) => {
             setGlossaries(response.glossaries);
         });
-    }, [])
+    }, glossaries);
 
     const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
             glossary.id = response;
-            glossary.done = false;
             glossaries.push(glossary);
             setGlossaries(glossaries);
         })
@@ -36,7 +35,7 @@ function App() {
 
     const remove = (id) => {
         call("/glossaries/" + id, "DELETE", id);
-        const newGlossaries = glossaries.filter(e => e.id !== id);
+        const newGlossaries = glossaries.filter((g) => g.id !== id);
         setGlossaries(newGlossaries);
     }
 
@@ -47,8 +46,8 @@ function App() {
                 <div className="GlossaryList">
                     <Paper style={{margin: 16}}>
                         <List>
-                            {glossaries.map((v, i) => (
-                                <Glossary key={i} glossary={v} update={update} remove={remove}/>
+                            {glossaries.map((v) => (
+                                <Glossary key={v.id} glossary={v} update={update} remove={remove}/>
                             ))}
                         </List>
                     </Paper>
