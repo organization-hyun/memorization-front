@@ -13,7 +13,7 @@ function App() {
         call("/glossaries", "GET", null).then((response) => {
             setGlossaries(response.glossaries);
         });
-    }, glossaries);
+    }, [glossaries]);
 
     const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
@@ -27,7 +27,7 @@ function App() {
         call("/glossaries/" + glossary.id, "PUT", glossary);
         const newGlossaries = glossaries.map(e => {
             if (e.id === glossary.id) {
-                e.title = glossary.title;
+                glossary.title = e.title;
             }
         });
         setGlossaries(newGlossaries);
