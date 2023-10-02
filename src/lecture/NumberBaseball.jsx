@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Try from './Try';
 
 function getNumbers() {
@@ -18,6 +18,7 @@ const NumberBaseball = () => {
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers);
     const [tries, setTries] = useState([]);
+    const inputEl = useRef(null);
 
     const onSubmitForm = (e) => {
         e.preventDefault();
@@ -28,6 +29,7 @@ const NumberBaseball = () => {
             setValue('');
             setAnswer(getNumbers);
             setTries([]);
+            inputEl.current.focus();
         } else {
             const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
@@ -38,6 +40,7 @@ const NumberBaseball = () => {
                 setValue('');
                 setAnswer(getNumbers);
                 setTries([]);
+                inputEl.current.focus();
             } else {
                 for (let i = 0; i < 4; i++) {
                     if (answerArray[i] === answer[i]) {
