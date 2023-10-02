@@ -1,86 +1,66 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Checkbox, IconButton, InputBase, ListItem, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 
-class Glossary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            glossary: props.glossary,
-            readOnly: true
-        };
-        this.update = props.update;
-        this.remove = props.remove;
+const Glossary = (props) => {
+
+    const [id, setId] = useState(props.glossary.id);
+    const [title, setTitle] = useState(props.glossary.title);
+    const [checked, setChecked] = useState(false);
+
+    const update = props.update;
+    const remove = props.remove;
+
+    const editEventHandler = (e) => {
+        setTitle(e.target.value);
     }
 
-    editEventHandler = (e) => {
-        const thisGlossary = this.state.glossary;
-        thisGlossary.title = e.target.value;
-        this.setState({glossary: thisGlossary});
+    const deleteEventHandler = () => {
+        remove(id);
     }
 
-    // 함수 추가
-    deleteEventHandler = () => {
-        this.remove(this.state.glossary.id);
-    }
-
-    offReadOnlyMode = () => {
-        console.log("Event!", this.state.readOnly)
-        this.setState({readOnly: false}, () => {
-            console.log("ReadOnly?", this.state.readOnly);
+    const enterKeyEventHandler = (e) => {
+        setTitle(e.target.value);
+        update({
+            id: id,
+            title: title
         });
     }
 
-    enterKeyEventHandler = (e) => {
-        if (e.key === 'Enter') {
-            this.setState({readOnly: true});
-        }
-        const thisGlossary = this.state.glossary;
-        thisGlossary.title = e.target.value;
-        this.update(thisGlossary);
+    const checkboxEventHandler = (e) => {
+        setChecked(true);
     }
 
-    checkboxEventHandler = (e) => {
-        const thisGlossary = this.state.glossary;
-        thisGlossary.done = !thisGlossary.done;
-        this.setState({glossary: thisGlossary});
-    }
+    return (
+        <ListItem>
+            <Checkbox onChange={checkboxEventHandler}
+                      disableRipple/>
+            <ListItemText>
+                <InputBase
+                    inputProps={{
+                        "aria-label": "naked",
+                    }}
+                    type="text"
+                    id={id} // 각 리스트를 구분하려고 id를 연결
+                    name={id} // 각 리스트를 구분하려고 id를 연결
+                    value={title}
+                    multiline={true}
+                    fullWidth={true}
+                    // onClick={offReadOnlyMode}
+                    onChange={editEventHandler}
+                    onKeyPress={enterKeyEventHandler}
+                />
+            </ListItemText>
 
-    render() {
-        const glossary = this.state.glossary;
-        return (
-            <ListItem>
-                <Checkbox checked={glossary.done}
-                          onChange={this.checkboxEventHandler}
-                          disableRipple/>
-                <ListItemText>
-                    <InputBase
-                        inputProps={{
-                            "aria-label": "naked",
-                            readOnly: this.state.readOnly,
-                        }}
-                        type="text"
-                        id={glossary.id} // 각 리스트를 구분하려고 id를 연결
-                        name={glossary.id} // 각 리스트를 구분하려고 id를 연결
-                        value={glossary.title}
-                        multiline={true}
-                        fullWidth={true}
-                        onClick={this.offReadOnlyMode}
-                        onChange={this.editEventHandler}
-                        onKeyPress={this.enterKeyEventHandler}
-                    />
-                </ListItemText>
-
-                <ListItemSecondaryAction>
-                    <IconButton
-                        aria-label="Delete Glossary"
-                        onClick={this.deleteEventHandler}>
-                        <DeleteOutlined/>
-                    </IconButton>
-                </ListItemSecondaryAction>
-            </ListItem>
-        );
-    }
+            <ListItemSecondaryAction>
+                <IconButton
+                    aria-label="Delete Glossary"
+                    onClick={deleteEventHandler}>
+                    <DeleteOutlined/>
+                </IconButton>
+            </ListItemSecondaryAction>
+        </ListItem>
+    );
 }
 
 export default Glossary;
