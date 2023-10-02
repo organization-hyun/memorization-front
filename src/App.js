@@ -13,7 +13,7 @@ function App() {
         call("/glossaries", "GET", null).then((response) => {
             setGlossaries(response.glossaries);
         });
-    }, [glossaries]);
+    }, []);
 
     const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
