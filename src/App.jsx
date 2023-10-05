@@ -27,8 +27,9 @@ function App() {
         call("/glossaries/" + glossary.id, "PUT", glossary);
         const newGlossaries = glossaries.map(e => {
             if (e.id === glossary.id) {
-                glossary.title = e.title;
+                e.title = glossary.title;
             }
+            return e;
         });
         setGlossaries(newGlossaries);
     }
