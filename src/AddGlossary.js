@@ -1,56 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Grid, Paper, TextField} from "@material-ui/core";
 
-class AddGlossary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {glossary: {title: ""}} // 사용자의 입력을 저장할 오브젝트
-        this.add = props.add; // props의 함수를 this.add로 연결
+const AddGlossary = (props) => {
+
+    const [inputValue, setInputValue] = useState('');
+
+    const add = props.add;
+
+    const onInputChange = (e) => {
+        setInputValue(e.target.value);
     }
 
-    onInputChange = (e) => {
-        const thisGlossary = this.state.glossary;
-        thisGlossary.title = e.target.value;
-        this.setState({glossary: thisGlossary})
+    const onButtonClick = (e) => {
+        add({
+            title: inputValue
+        });
+        setInputValue('');
     }
 
-    onButtonClick = () => {
-        this.add(this.state.glossary);
-        this.setState({glossary: {title: ""}})
-    }
-
-    enterKeyEventHandler = (e) => {
+    const enterKeyEventHandler = (e) => {
         if (e.key === 'Enter') {
-            this.onButtonClick();
+            onButtonClick();
         }
     }
 
-    render() {
-        return (
-            <Paper style={{margin: 16, padding: 16}}>
-                <Grid container>
-                    <Grid xs={11} md={11} item style={{paddingRight: 16}}>
-                        <TextField
-                            placeholder="Add Glossary here"
-                            fullWidth
-                            onChange={this.onInputChange}
-                            value={this.state.glossary.title}
-                            onKeyPress={this.enterKeyEventHandler}
-                        />
-                    </Grid>
-                    <Grid xs={1} md={1} item>
-                        <Button fullWidth
-                                color="secondary"
-                                variant="outlined"
-                                onClick={this.onButtonClick}
-                        >
-                            +
-                        </Button>
-                    </Grid>
+    return (
+        <Paper style={{margin: 16, padding: 16}}>
+            <Grid container>
+                <Grid xs={11} md={11} item style={{paddingRight: 16}}>
+                    <TextField
+                        placeholder="Add Glossary here"
+                        fullWidth
+                        onChange={onInputChange}
+                        value={inputValue}
+                        onKeyPress={enterKeyEventHandler}
+                    />
                 </Grid>
-            </Paper>
-        );
-    }
+                <Grid xs={1} md={1} item>
+                    <Button fullWidth
+                            color="secondary"
+                            variant="outlined"
+                            onClick={onButtonClick}
+                    >
+                        +
+                    </Button>
+                </Grid>
+            </Grid>
+        </Paper>
+    );
+
 }
 
 export default AddGlossary;

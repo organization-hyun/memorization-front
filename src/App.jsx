@@ -17,9 +17,11 @@ function App() {
 
     const add = (glossary) => {
         call("/glossaries", "POST", glossary).then((response) => {
-            glossary.id = response;
-            glossaries.push(glossary);
-            setGlossaries(glossaries);
+            const newGlossary = {
+                id: response,
+                title: glossary.title,
+            }
+            setGlossaries(prevGlossaries => ([...prevGlossaries, newGlossary]));
         })
     }
 
@@ -43,7 +45,7 @@ function App() {
     return (
         <div className="App">
             <Container maxWidth="md">
-                <AddGlossary add={add}/>
+                <AddGlossary glossaries={glossaries} add={add}/>
                 <div className="GlossaryList">
                     <Paper style={{margin: 16}}>
                         <List>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {IconButton, InputBase, ListItem, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
+import {IconButton, InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
+import {ListItemButton} from "@mui/material";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 
 const Glossary = (props) => {
@@ -29,7 +30,7 @@ const Glossary = (props) => {
     }
 
     return (
-        <ListItem>
+        <ListItemButton component="a" href="#simple-list">
             <ListItemText>
                 <InputBase
                     inputProps={{
@@ -53,7 +54,7 @@ const Glossary = (props) => {
                     <DeleteOutlined/>
                 </IconButton>
             </ListItemSecondaryAction>
-        </ListItem>
+        </ListItemButton>
     );
 }
 
