@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {Checkbox, IconButton, InputBase, ListItem, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
+import {IconButton, InputBase, ListItem, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 
 const Glossary = (props) => {
 
-    const [id, setId] = useState(props.glossary.id);
+    const [id] = useState(props.glossary.id);
     const [title, setTitle] = useState(props.glossary.title);
-    const [checked, setChecked] = useState(false);
 
     const update = props.update;
     const remove = props.remove;
@@ -20,21 +19,17 @@ const Glossary = (props) => {
     }
 
     const enterKeyEventHandler = (e) => {
-        setTitle(e.target.value);
-        update({
-            id: id,
-            title: title
-        });
-    }
-
-    const checkboxEventHandler = (e) => {
-        setChecked(true);
+        if (e.key === 'Enter') {
+            update({
+                id: id,
+                title: title
+            });
+        }
+        setTitle(title);
     }
 
     return (
         <ListItem>
-            <Checkbox onChange={checkboxEventHandler}
-                      disableRipple/>
             <ListItemText>
                 <InputBase
                     inputProps={{
@@ -46,9 +41,8 @@ const Glossary = (props) => {
                     value={title}
                     multiline={true}
                     fullWidth={true}
-                    // onClick={offReadOnlyMode}
                     onChange={editEventHandler}
-                    onKeyPress={enterKeyEventHandler}
+                    onKeyDown={enterKeyEventHandler}
                 />
             </ListItemText>
 
