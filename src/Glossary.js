@@ -30,7 +30,7 @@ const Glossary = (props) => {
     }
 
     return (
-        <ListItemButton component="a" href="#simple-list">
+        <ListItemButton component="a" href="/detail">
             <ListItemText>
                 <InputBase
                     inputProps={{
