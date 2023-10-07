@@ -5,7 +5,7 @@ import "./App.css"
 import AddGlossary from "./AddGlossary";
 import {call} from "./service/ApiService";
 
-function App() {
+function Main() {
 
     const [glossaries, setGlossaries] = useState([]);
 
@@ -43,7 +43,7 @@ function App() {
     }
 
     return (
-        <div className="App">
+        <div className="Main">
             <Container maxWidth="md">
                 <AddGlossary glossaries={glossaries} add={add}/>
                 <div className="GlossaryList">
@@ -61,4 +61,4 @@ function App() {
 
 }
 
-export default App;
+export default Main;
