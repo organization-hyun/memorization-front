@@ -30,7 +30,8 @@ const Glossary = (props) => {
     }
 
     return (
-        <ListItemButton component="a" href="#simple-list">
+        // TODO href id 값 올바르게 전달
+        <ListItemButton component="a" href="/glossaries/1">
             <ListItemText>
                 <InputBase
                     inputProps={{
