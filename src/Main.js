@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Glossary from "./Glossary";
 import {Container, List, Paper} from "@material-ui/core";
-import "./App.css"
 import AddGlossary from "./AddGlossary";
 import {call} from "./service/ApiService";
 
