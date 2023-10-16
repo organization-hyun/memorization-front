@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Glossary from "./Glossary";
+import Glossary from "../Glossary";
 import {Container, List, Paper} from "@material-ui/core";
-import AddGlossary from "./AddGlossary";
-import {call} from "./service/ApiService";
-import {API_BASE_URL} from "./app-config";
+import AddGlossary from "../AddGlossary";
+import {call} from "../service/ApiService";
+import {API_BASE_URL} from "../app-config";
 
-function Main() {
+function Home() {
 
     const [glossaries, setGlossaries] = useState([]);
 
@@ -66,4 +66,4 @@ function Main() {
 
 }
 
-export default Main;
+export default Home;
