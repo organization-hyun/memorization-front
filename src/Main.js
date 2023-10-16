@@ -4,15 +4,21 @@ import {Container, List, Paper} from "@material-ui/core";
 import "./App.css"
 import AddGlossary from "./AddGlossary";
 import {call} from "./service/ApiService";
+import {API_BASE_URL} from "./app-config";
 
 function Main() {
 
     const [glossaries, setGlossaries] = useState([]);
 
+    const getGlossaries = async () => {
+        const response = await ((await fetch(
+            `${API_BASE_URL}/glossaries`
+        )).json());
+        setGlossaries(response.glossaries);
+    }
+
     useEffect(() => {
-        call("/glossaries", "GET", null).then((response) => {
-            setGlossaries(response.glossaries);
-        });
+        getGlossaries()
     }, []);
 
     const add = (glossary) => {
