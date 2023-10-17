@@ -8,7 +8,8 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/glossaries/:id" element={<Detail/>}/>
+                // TODO 실제 용어집 이름 전달 필요
+                <Route path="/glossaries/:id" element={<Detail title={"테스트"}/>}/>
             </Routes>
         </BrowserRouter>
     );
