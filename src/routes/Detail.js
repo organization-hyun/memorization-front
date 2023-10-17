@@ -21,9 +21,22 @@ function Detail({title}) {
     }, [])
 
     return (
-        <div>
-            용어집 이름: {title}
-        </div>
+        <>
+            <div>
+                용어집 이름: {title}
+            </div>
+            <hr/>
+            <div>
+                {terms.map((term) =>
+                    <>
+                        <span>{term.word}</span>
+                        <span>{term.description}</span>
+                        <span>{term.keywords}</span>
+                        <button>등록</button>
+                    </>
+                )}
+            </div>
+        </>
     );
 }
 
