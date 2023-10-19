@@ -3,13 +3,13 @@ import {API_BASE_URL} from "../app-config";
 import {useEffect, useState} from "react";
 
 function Detail({title}) {
-    const params = useParams();
+    const {id} = useParams();
 
     const [terms, setTerms] = useState([]);
 
     const getTerms = async () => {
         const response = await ((await fetch(
-            `${API_BASE_URL}/glossaries/${params.id}/terms`
+            `${API_BASE_URL}/glossaries/${id}/terms`
         )).json());
 
         setTerms(response.terms);
