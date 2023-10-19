@@ -28,12 +28,12 @@ function Detail({title}) {
             <hr/>
             <div>
                 {terms.map((term) =>
-                    <>
+                    <div key={term.id}>
                         <span>{term.word}</span>
                         <span>{term.description}</span>
                         <span>{term.keywords}</span>
                         <button>등록</button>
-                    </>
+                    </div>
                 )}
             </div>
         </>
