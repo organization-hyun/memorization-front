@@ -2,14 +2,12 @@ import React, {useState} from 'react';
 import {IconButton, InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import {ListItemButton} from "@mui/material";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
+import {Link} from "react-router-dom";
 
-const Glossary = (props) => {
+const Glossary = ({glossary, update, remove}) => {
 
-    const [id] = useState(props.glossary.id);
-    const [title, setTitle] = useState(props.glossary.title);
-
-    const update = props.update;
-    const remove = props.remove;
+    const [id] = useState(glossary.id);
+    const [title, setTitle] = useState(glossary.title);
 
     const editEventHandler = (e) => {
         setTitle(e.target.value);
@@ -30,32 +28,32 @@ const Glossary = (props) => {
     }
 
     return (
-        // TODO href id 값 올바르게 전달
-        <ListItemButton component="a" href="/glossaries/1">
-            <ListItemText>
-                <InputBase
-                    inputProps={{
-                        "aria-label": "naked",
-                    }}
-                    type="text"
-                    id={id} // 각 리스트를 구분하려고 id를 연결
-                    name={id} // 각 리스트를 구분하려고 id를 연결
-                    value={title}
-                    multiline={true}
-                    fullWidth={true}
-                    onChange={editEventHandler}
-                    onKeyDown={enterKeyEventHandler}
-                />
-            </ListItemText>
+        <Link to={`/glossaries/${id}`}>
+            <ListItemButton>
+                <ListItemText>
+                    <InputBase
+                        inputProps={{
+                            "aria-label": "naked",
+                        }}
+                        type="text"
+                        value={title}
+                        multiline={true}
+                        fullWidth={true}
+                        onChange={editEventHandler}
+                        onKeyDown={enterKeyEventHandler}
+                    />
+                </ListItemText>
 
-            <ListItemSecondaryAction>
-                <IconButton
-                    aria-label="Delete Glossary"
-                    onClick={deleteEventHandler}>
-                    <DeleteOutlined/>
-                </IconButton>
-            </ListItemSecondaryAction>
-        </ListItemButton>
+                <ListItemSecondaryAction>
+                    <IconButton
+                        aria-label="Delete Glossary"
+                        onClick={deleteEventHandler}>
+                        <DeleteOutlined/>
+                    </IconButton>
+                </ListItemSecondaryAction>
+            </ListItemButton>
+        </Link>
+
     );
 }
 
