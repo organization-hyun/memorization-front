@@ -1,43 +1,35 @@
 import {useParams} from "react-router";
 import {API_BASE_URL} from "../app-config";
 import {useEffect, useState} from "react";
+import TermsTable from "../common/TermsTable";
 
 function Detail({title}) {
-    const {id} = useParams();
+  const {id} = useParams();
 
-    const [terms, setTerms] = useState([]);
+  const [terms, setTerms] = useState([]);
 
-    const getTerms = async () => {
-        const response = await ((await fetch(
-            `${API_BASE_URL}/glossaries/${id}/terms`
-        )).json());
+  const getTerms = async () => {
+    const response = await ((await fetch(
+      `${API_BASE_URL}/glossaries/${id}/terms`
+    )).json());
 
-        setTerms(response.terms);
-    }
+    setTerms(response.terms);
+  }
 
 
-    useEffect(() => {
-        getTerms();
-    }, [])
+  useEffect(() => {
+    getTerms();
+  }, [])
 
-    return (
-        <>
-            <div>
-                용어집 이름: {title}
-            </div>
-            <hr/>
-            <div>
-                {terms.map((term) =>
-                    <div key={term.id}>
-                        <span>{term.word}</span>
-                        <span>{term.description}</span>
-                        <span>{term.keywords}</span>
-                        <button>등록</button>
-                    </div>
-                )}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div>
+        용어집 이름: {title}
+      </div>
+      <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
+    </>
+  )
+    ;
 }
 
 export default Detail;
