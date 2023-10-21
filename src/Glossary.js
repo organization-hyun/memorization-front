@@ -45,12 +45,9 @@ const Glossary = ({glossary, update, remove}) => {
                 </ListItemText>
 
                 <ListItemSecondaryAction>
-                    {/*<IconButton*/}
-                    {/*    aria-label="Delete Glossary"*/}
-                    {/*    onClick={deleteEventHandler}>*/}
-                    {/*    <DeleteOutlined/>*/}
-                    {/*</IconButton>*/}
-                    <Button color="black">삭제</Button>
+                    <Button
+                        onClick={deleteEventHandler}
+                        color="black">삭제</Button>
                 </ListItemSecondaryAction>
             </ListItemButton>
         </Link>
