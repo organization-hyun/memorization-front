@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {IconButton, InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
+import {InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import {ListItemButton} from "@mui/material";
-import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 import {Link} from "react-router-dom";
+import Button from "./common/Button";
 
 const Glossary = ({glossary, update, remove}) => {
 
@@ -45,11 +45,12 @@ const Glossary = ({glossary, update, remove}) => {
                 </ListItemText>
 
                 <ListItemSecondaryAction>
-                    <IconButton
-                        aria-label="Delete Glossary"
-                        onClick={deleteEventHandler}>
-                        <DeleteOutlined/>
-                    </IconButton>
+                    {/*<IconButton*/}
+                    {/*    aria-label="Delete Glossary"*/}
+                    {/*    onClick={deleteEventHandler}>*/}
+                    {/*    <DeleteOutlined/>*/}
+                    {/*</IconButton>*/}
+                    <Button color="black">삭제</Button>
                 </ListItemSecondaryAction>
             </ListItemButton>
         </Link>
