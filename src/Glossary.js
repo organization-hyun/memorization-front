@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import {ListItemButton} from "@mui/material";
 import {Link} from "react-router-dom";
-import Button from "./common/Button";
+import Button from '@mui/material/Button';
 
 const Glossary = ({glossary, update, remove}) => {
 
@@ -45,9 +45,7 @@ const Glossary = ({glossary, update, remove}) => {
                 </ListItemText>
 
                 <ListItemSecondaryAction>
-                    <Button
-                        onClick={deleteEventHandler}
-                        color="black">삭제</Button>
+                    <Button variant="outlined" onClick={deleteEventHandler}>삭제</Button>
                 </ListItemSecondaryAction>
             </ListItemButton>
         </Link>

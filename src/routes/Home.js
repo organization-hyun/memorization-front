@@ -48,7 +48,6 @@ function Home() {
     }
 
     return (
-        <div className="Main">
             <Container maxWidth="md">
                 <AddGlossary glossaries={glossaries} add={add}/>
                 <div className="GlossaryList">
@@ -61,7 +60,6 @@ function Home() {
                     </Paper>
                 </div>
             </Container>
-        </div>
     );
 
 }
