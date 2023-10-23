@@ -21,7 +21,7 @@ const GlossarySetting = ({title}) => {
                   color="primary"
                   variant="outlined"
           >
-            등록
+            수정
           </Button>
         </Grid>
       </Grid>
