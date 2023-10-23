@@ -1,7 +1,7 @@
 import {Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function TermsTable({headers, terms}) {
 
@@ -9,15 +9,24 @@ function TermsTable({headers, terms}) {
   const [selectedIds, setSelectedIds] = useState([]);
 
   const handleCheckboxClick = (id) => {
-    const isIdSelected = selectedIds.includes(id);
+    setSelectedIds((prevSelectedIds) => {
+      const isNewSelected = !prevSelectedIds.includes(id);
 
-    if (isIdSelected) {
-      const newSelectedIds = selectedIds.filter((selectedId) => selectedId !== id);
-      setSelectedIds(newSelectedIds);
-    } else {
-      setSelectedIds((prev) => [...prev, id]);
-    }
+      if (isNewSelected) {
+        return [...prevSelectedIds, id];
+      } else {
+        return prevSelectedIds.filter((selectedId) => selectedId !== id);
+      }
+    });
   };
+
+  useEffect(() => {
+    if (selectedIds.length === 0) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [selectedIds]);
 
   return (
     <TableContainer component={Paper}>
