@@ -2,6 +2,8 @@ import {useParams} from "react-router";
 import {API_BASE_URL} from "../app-config";
 import {useEffect, useState} from "react";
 import TermsTable from "../common/TermsTable";
+import {Container} from "@mui/material";
+import AddTerm from "../term/AddTerm";
 
 function Detail({title}) {
   const {id} = useParams();
@@ -22,12 +24,13 @@ function Detail({title}) {
   }, [])
 
   return (
-    <>
+    <Container >
+      <AddTerm/>
       <div>
         용어집 이름: {title}
       </div>
       <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
-    </>
+    </Container>
   )
     ;
 }
