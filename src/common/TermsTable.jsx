@@ -19,9 +19,9 @@ function TermsTable({headers, terms}) {
             >
               <TableCell align="right">{term.word}</TableCell>
               <TableCell align="right">{term.description}</TableCell>
-              <TableCell align="right">{term.keyword1}</TableCell>
-              <TableCell align="right">{term.keyword2}</TableCell>
-              <TableCell align="right">{term.keyword3}</TableCell>
+              <TableCell align="right">{term.keywords[0]}</TableCell>
+              <TableCell align="right">{term.keywords[1]}</TableCell>
+              <TableCell align="right">{term.keywords[2]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
