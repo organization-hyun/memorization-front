@@ -2,6 +2,8 @@ import {Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead,
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import {useEffect, useState} from "react";
+import {call} from "../service/ApiService";
+import {API_BASE_URL} from "../app-config";
 
 function TermsTable({headers, terms}) {
 
@@ -20,6 +22,10 @@ function TermsTable({headers, terms}) {
     });
   };
 
+  const handleDeleteButtonClick = () => {
+    call(`${API_BASE_URL}/terms/${selectedIds.toString()}`, "DELETE");
+  }
+
   useEffect(() => {
     if (selectedIds.length === 0) {
       setDisabled(true);
@@ -34,7 +40,7 @@ function TermsTable({headers, terms}) {
         <TableHead>
           <TableRow>
             <TableCell key={"checkboxArea"} align="center">
-              <IconButton aria-label="delete" disabled={disabled}>
+              <IconButton onClick={handleDeleteButtonClick} aria-label="delete" disabled={disabled}>
                 <Delete/>
               </IconButton>
             </TableCell>
