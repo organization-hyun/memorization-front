@@ -2,6 +2,7 @@ import {Grid, Paper} from "@mui/material";
 import {Button, TextField} from "@material-ui/core";
 import React from "react";
 
+// TODO 추후 로직 추가
 const GlossarySetting = ({title}) => {
   return (
     <Paper style={{margin: 16, padding: 16}}>
