@@ -10,6 +10,10 @@ function Detail({title}) {
 
   const [terms, setTerms] = useState([]);
 
+  useEffect(() => {
+    getTerms();
+  }, [])
+
   const getTerms = async () => {
     const response = await ((await fetch(
       `${API_BASE_URL}/glossaries/${id}/terms`
@@ -17,11 +21,6 @@ function Detail({title}) {
 
     setTerms(response.terms);
   }
-
-
-  useEffect(() => {
-    getTerms();
-  }, [])
 
   return (
     <Container >
