@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import {Button, Grid, Paper, TextField} from "@material-ui/core";
+import {API_BASE_URL} from "../app-config";
+import {call} from "../service/ApiService";
 
-const AddTerm = () => {
+const AddTerm = ({id}) => {
 
   const [term, setTerm] = useState('');
   const [description, setDescription] = useState('');
@@ -13,8 +15,12 @@ const AddTerm = () => {
     setValue(e.target.value);
   }
 
-  const onButtonClick = (e) => {
-
+  const handleAddTermButtonClick = () => {
+    const response = call(`${API_BASE_URL}/glossaries/${id}/terms`, "POST", {
+      word: "word 테스트",
+      description: "description 테스트",
+      keywords: ["keyword1", "keyword2", "keyword3"],
+    });
   }
 
   return (
@@ -62,7 +68,7 @@ const AddTerm = () => {
           <Button fullWidth
                   color="secondary"
                   variant="outlined"
-            // onClick={onButtonClick}
+            onClick={handleAddTermButtonClick}
           >
             등록
           </Button>

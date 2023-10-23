@@ -25,7 +25,7 @@ function Detail({title}) {
 
   return (
     <Container >
-      <AddTerm/>
+      <AddTerm id={id}/>
       <div>
         용어집 이름: {title}
       </div>

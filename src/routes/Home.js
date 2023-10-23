@@ -21,7 +21,7 @@ function Home() {
     }, []);
 
     const add = (glossary) => {
-        call("/glossaries", "POST", glossary).then((response) => {
+        call(`${API_BASE_URL}/glossaries`, "POST", glossary).then((response) => {
             const newGlossary = {
                 id: response,
                 title: glossary.title,
@@ -31,7 +31,7 @@ function Home() {
     }
 
     const update = (glossary) => {
-        call("/glossaries/" + glossary.id, "PUT", glossary);
+        call(`${API_BASE_URL}/glossaries/${glossary.id}`, "PUT", glossary);
         const newGlossaries = glossaries.map(e => {
             if (e.id === glossary.id) {
                 e.title = glossary.title;
@@ -42,7 +42,7 @@ function Home() {
     }
 
     const remove = (id) => {
-        call("/glossaries/" + id, "DELETE", id);
+        call(`${API_BASE_URL}/glossaries/${id}`, "DELETE", id);
         const newGlossaries = glossaries.filter((g) => g.id !== id);
         setGlossaries(newGlossaries);
     }
