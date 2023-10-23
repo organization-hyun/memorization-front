@@ -71,7 +71,7 @@ const AddTerm = ({id}) => {
         </Grid>
         <Grid xs={1} md={1} item>
           <Button fullWidth
-                  color="secondary"
+                  color="primary"
                   variant="outlined"
                   onClick={handleAddTermButtonClick}
           >
