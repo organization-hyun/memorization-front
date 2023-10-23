@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
 import {Grid} from "@mui/material";
 
-const Glossary = ({glossary, update, remove}) => {
+const Glossary = ({glossary, remove}) => {
 
   const [id] = useState(glossary.id);
   const [title] = useState(glossary.title);

@@ -30,17 +30,6 @@ function Home() {
         })
     }
 
-    const update = (glossary) => {
-        call(`${API_BASE_URL}/glossaries/${glossary.id}`, "PUT", glossary);
-        const newGlossaries = glossaries.map(e => {
-            if (e.id === glossary.id) {
-                e.title = glossary.title;
-            }
-            return e;
-        });
-        setGlossaries(newGlossaries);
-    }
-
     const remove = (id) => {
         call(`${API_BASE_URL}/glossaries/${id}`, "DELETE", id);
         const newGlossaries = glossaries.filter((g) => g.id !== id);
@@ -54,7 +43,7 @@ function Home() {
                     <Paper style={{margin: 16}}>
                         <List>
                             {glossaries.map((v) => (
-                                <Glossary key={v.id} glossary={v} update={update} remove={remove}/>
+                                <Glossary key={v.id} glossary={v} remove={remove}/>
                             ))}
                         </List>
                     </Paper>
