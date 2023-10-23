@@ -1,56 +1,40 @@
 import React, {useState} from 'react';
-import {InputBase, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
-import {ListItemButton} from "@mui/material";
+import {InputBase, ListItemText} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
+import {Grid} from "@mui/material";
 
 const Glossary = ({glossary, update, remove}) => {
 
-    const [id] = useState(glossary.id);
-    const [title, setTitle] = useState(glossary.title);
+  const [id] = useState(glossary.id);
+  const [title] = useState(glossary.title);
 
-    const editEventHandler = (e) => {
-        setTitle(e.target.value);
-    }
+  const deleteEventHandler = () => {
+    remove(id);
+  }
 
-    const deleteEventHandler = () => {
-        remove(id);
-    }
-
-    const enterKeyEventHandler = (e) => {
-        if (e.key === 'Enter') {
-            update({
-                id: id,
-                title: title
-            });
-        }
-        setTitle(title);
-    }
-
-    return (
+  return (
+    <Grid container>
+      <Grid xs={11} md={11} item style={{paddingLeft: 16, paddingRight: 16}}>
         <Link to={`/glossaries/${id}`}>
-            <ListItemButton>
-                <ListItemText>
-                    <InputBase
-                        inputProps={{
-                            "aria-label": "naked",
-                        }}
-                        type="text"
-                        value={title}
-                        multiline={true}
-                        fullWidth={true}
-                        onChange={editEventHandler}
-                        onKeyDown={enterKeyEventHandler}
-                    />
-                </ListItemText>
-
-                <ListItemSecondaryAction>
-                    <Button variant="outlined" onClick={deleteEventHandler}>삭제</Button>
-                </ListItemSecondaryAction>
-            </ListItemButton>
+          <ListItemText>
+            <InputBase
+              inputProps={{
+                "aria-label": "naked",
+              }}
+              type="text"
+              value={title}
+              multiline
+              fullWidth
+            />
+          </ListItemText>
         </Link>
-
-    );
+      </Grid>
+      <Grid xs={1} md={1} item>
+        <Button variant="outlined" onClick={deleteEventHandler}>삭제</Button>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default Glossary;
