@@ -21,6 +21,11 @@ const AddTerm = ({id}) => {
       description: description,
       keywords: [keyword1, keyword2, keyword3]
     });
+    setWord('');
+    setDescription('');
+    setKeyword1('');
+    setKeyword2('');
+    setKeyword3('');
   }
 
   return (
