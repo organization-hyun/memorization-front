@@ -23,10 +23,14 @@ function Detail({title}) {
     setTerms(response.terms);
   }
 
+  const addTerm = (term) => {
+    setTerms((prev) => [...prev, term]);
+  }
+
   return (
     <Container>
       <GlossarySetting title={title}/>
-      <AddTerm id={id}/>
+      <AddTerm id={id} addTerm={addTerm}/>
       <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
     </Container>
   )

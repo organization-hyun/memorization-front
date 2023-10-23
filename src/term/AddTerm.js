@@ -3,7 +3,7 @@ import {Button, Grid, Paper, TextField} from "@material-ui/core";
 import {API_BASE_URL} from "../app-config";
 import {call} from "../service/ApiService";
 
-const AddTerm = ({id}) => {
+const AddTerm = ({id, addTerm}) => {
 
   const [word, setWord] = useState('');
   const [description, setDescription] = useState('');
@@ -17,6 +17,11 @@ const AddTerm = ({id}) => {
 
   const handleAddTermButtonClick = () => {
     const response = call(`${API_BASE_URL}/glossaries/${id}/terms`, "POST", {
+      word: word,
+      description: description,
+      keywords: [keyword1, keyword2, keyword3]
+    });
+    addTerm({
       word: word,
       description: description,
       keywords: [keyword1, keyword2, keyword3]
