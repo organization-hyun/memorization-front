@@ -5,7 +5,7 @@ import {call} from "../service/ApiService";
 
 const AddTerm = ({id}) => {
 
-  const [term, setTerm] = useState('');
+  const [word, setWord] = useState('');
   const [description, setDescription] = useState('');
   const [keyword1, setKeyword1] = useState('');
   const [keyword2, setKeyword2] = useState('');
@@ -17,9 +17,9 @@ const AddTerm = ({id}) => {
 
   const handleAddTermButtonClick = () => {
     const response = call(`${API_BASE_URL}/glossaries/${id}/terms`, "POST", {
-      word: "word 테스트",
-      description: "description 테스트",
-      keywords: ["keyword1", "keyword2", "keyword3"],
+      word: word,
+      description: description,
+      keywords: [keyword1, keyword2, keyword3]
     });
   }
 
@@ -32,8 +32,8 @@ const AddTerm = ({id}) => {
             multiline
             size="small"
             variant="outlined"
-            value={term}
-            onChange={(e) => handleInputChange(e, setTerm)}
+            value={word}
+            onChange={(e) => handleInputChange(e, setWord)}
           />
           <TextField
             placeholder="설명"
@@ -68,7 +68,7 @@ const AddTerm = ({id}) => {
           <Button fullWidth
                   color="secondary"
                   variant="outlined"
-            onClick={handleAddTermButtonClick}
+                  onClick={handleAddTermButtonClick}
           >
             등록
           </Button>
