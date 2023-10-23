@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import TermsTable from "../common/TermsTable";
 import {Container} from "@mui/material";
 import AddTerm from "../term/AddTerm";
+import GlossarySetting from "../component/GlossarySetting";
 
 function Detail({title}) {
   const {id} = useParams();
@@ -23,11 +24,9 @@ function Detail({title}) {
   }
 
   return (
-    <Container >
+    <Container>
+      <GlossarySetting title={title}/>
       <AddTerm id={id}/>
-      <div>
-        용어집 이름: {title}
-      </div>
       <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
     </Container>
   )
