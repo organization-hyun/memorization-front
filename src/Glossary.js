@@ -1,40 +1,42 @@
 import React, {useState} from 'react';
-import {InputBase, ListItemText} from "@material-ui/core";
+import {IconButton, InputBase, ListItemText} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import Button from '@mui/material/Button';
 import {Grid} from "@mui/material";
+import {Delete} from "@material-ui/icons";
 
 const Glossary = ({glossary, remove}) => {
 
-  const [id] = useState(glossary.id);
-  const [title] = useState(glossary.title);
+    const [id] = useState(glossary.id);
+    const [title] = useState(glossary.title);
 
-  const deleteEventHandler = () => {
-    remove(id);
-  }
+    const deleteEventHandler = () => {
+        remove(id);
+    }
 
-  return (
-    <Grid container>
-      <Grid xs={11} md={11} item style={{paddingLeft: 16, paddingRight: 16}}>
-        <Link to={`/glossaries/${id}`}>
-          <ListItemText>
-            <InputBase
-              inputProps={{
-                "aria-label": "naked",
-              }}
-              type="text"
-              value={title}
-              multiline
-              fullWidth
-            />
-          </ListItemText>
-        </Link>
-      </Grid>
-      <Grid xs={1} md={1} item>
-        <Button variant="outlined" onClick={deleteEventHandler}>삭제</Button>
-      </Grid>
-    </Grid>
-  );
+    return (
+        <Grid container>
+            <Grid xs={11} md={11} item style={{paddingLeft: 16, paddingRight: 16}}>
+                <Link to={`/glossaries/${id}`}>
+                    <ListItemText>
+                        <InputBase
+                            inputProps={{
+                                "aria-label": "naked",
+                            }}
+                            type="text"
+                            value={title}
+                            multiline
+                            fullWidth
+                        />
+                    </ListItemText>
+                </Link>
+            </Grid>
+            <Grid xs={1} md={1} item>
+                <IconButton onClick={deleteEventHandler} aria-label="delete">
+                    <Delete/>
+                </IconButton>
+            </Grid>
+        </Grid>
+    );
 }
 
 export default Glossary;
