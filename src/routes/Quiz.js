@@ -20,7 +20,20 @@ function Quiz() {
     }
 
     return (
-        <div>Quiz</div>
+        <div>
+            {quizzes.map(quiz => {
+                return (
+                    <div key={quiz.id}>
+                        <div>
+                            {quiz.type}
+                        </div>
+                        <div>
+                            {quiz.quizText}
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
     );
 }
 
