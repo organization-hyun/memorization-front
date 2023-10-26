@@ -7,6 +7,16 @@ import Typography from '@mui/material/Typography';
 function QuizComponent({quiz}) {
     const [answer, setAnswer] = useState('');
 
+    const getQuizType = (quizType) => {
+        if (quizType === "WORD") {
+            return "단어를 보고 뜻을 적어주세요.";
+        }
+
+        if (quizType === "DESCRIPTION") {
+            return "설명을 보고 단어를 적어주세요."
+        }
+    };
+
     const handleChange = (event) => {
         setAnswer(event.target.value);
     };
@@ -16,8 +26,7 @@ function QuizComponent({quiz}) {
 
     return (
         <Box maxWidth={400} margin="auto" padding={2} border={1} borderColor="grey.400">
-            <Typography variant="h6">{quiz.type}</Typography>
-            {/*<Typography variant="body1">{`quizText: ${quizText}`}</Typography>*/}
+            <Typography variant="h6">{getQuizType(quiz.type)}</Typography>
             <Typography variant="body1">{`quizText:${quiz.quizText}`}</Typography>
             <TextField
                 fullWidth
