@@ -25,7 +25,7 @@ function QuizComponent({quiz}) {
     };
 
     return (
-        <Box maxWidth={400} margin="auto" padding={2} border={1} borderColor="grey.400">
+        <Box maxWidth={400} margin="auto" marginTop={3} padding={2} border={1} borderColor="grey.400">
             <Typography variant="h6">{getQuizType(quiz.type)}</Typography>
             <Typography variant="body1">{`quizText:${quiz.quizText}`}</Typography>
             <TextField
