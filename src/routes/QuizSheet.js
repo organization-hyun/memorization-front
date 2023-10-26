@@ -1,8 +1,9 @@
 import {useParams} from "react-router";
 import {API_BASE_URL} from "../app-config";
 import {useEffect, useState} from "react";
+import Quiz from "../component/Quiz";
 
-function Quiz() {
+function QuizSheet() {
     const {id} = useParams();
 
     const [quizzes, setQuizzes] = useState([]);
@@ -22,19 +23,10 @@ function Quiz() {
     return (
         <div>
             {quizzes.map(quiz => {
-                return (
-                    <div key={quiz.id}>
-                        <div>
-                            {quiz.type}
-                        </div>
-                        <div>
-                            {quiz.quizText}
-                        </div>
-                    </div>
-                );
+                return <Quiz quiz={quiz}/>
             })}
         </div>
     );
 }
 
-export default Quiz;
+export default QuizSheet;

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 import Login from "./routes/Login";
-import Quiz from "./routes/Quiz";
+import QuizSheet from "./routes/QuizSheet";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 // TODO 실제 용어집 이름 전달 필요
                 <Route path="/glossaries/:id" element={<Detail title={"테스트"}/>}/>
-                <Route path="/glossaries/:id/quiz" element={<Quiz/>}/>
+                <Route path="/glossaries/:id/quiz" element={<QuizSheet/>}/>
             </Routes>
         </BrowserRouter>
     );
