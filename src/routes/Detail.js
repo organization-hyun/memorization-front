@@ -7,34 +7,34 @@ import AddTerm from "../term/AddTerm";
 import GlossarySetting from "../component/GlossarySetting";
 
 function Detail({title}) {
-  const {id} = useParams();
+    const {id} = useParams();
 
-  const [terms, setTerms] = useState([]);
+    const [terms, setTerms] = useState([]);
 
-  useEffect(() => {
-    getTerms();
-  }, [])
+    useEffect(() => {
+        getTerms();
+    }, [])
 
-  const getTerms = async () => {
-    const response = await ((await fetch(
-      `${API_BASE_URL}/glossaries/${id}/terms`
-    )).json());
+    const getTerms = async () => {
+        const response = await ((await fetch(
+            `${API_BASE_URL}/glossaries/${id}/terms`
+        )).json());
 
-    setTerms(response.terms);
-  }
+        setTerms(response.terms);
+    }
 
-  const addTerm = (term) => {
-    setTerms((prev) => [...prev, term]);
-  }
+    const addTerm = (term) => {
+        setTerms((prev) => [...prev, term]);
+    }
 
-  return (
-    <Container>
-      <GlossarySetting title={title}/>
-      <AddTerm id={id} addTerm={addTerm}/>
-      <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
-    </Container>
-  )
-    ;
+    return (
+        <Container>
+            <GlossarySetting title={title}/>
+            <AddTerm glossaryId={id} addTerm={addTerm}/>
+            <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
+        </Container>
+    )
+        ;
 }
 
 export default Detail;
