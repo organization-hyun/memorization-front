@@ -21,17 +21,22 @@ function Detail({title}) {
         )).json());
 
         setTerms(response.terms);
-    }
+    };
 
     const addTerm = (term) => {
         setTerms((prev) => [...prev, term]);
-    }
+    };
+
+    const deleteTerm = (id) => {
+        const newTerms = terms.filter((prev) => prev.id !== id)
+        setTerms(newTerms);
+    };
 
     return (
         <Container>
             <GlossarySetting title={title}/>
             <AddTerm glossaryId={id} addTerm={addTerm}/>
-            <TermsTable headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
+            <TermsTable deleteTerm={deleteTerm} headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
         </Container>
     )
         ;
