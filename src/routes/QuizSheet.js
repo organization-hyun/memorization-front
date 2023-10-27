@@ -1,7 +1,9 @@
 import {useParams} from "react-router";
 import {API_BASE_URL} from "../app-config";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Quiz from "../component/Quiz";
+import Button from "@mui/material/Button";
+import {Box} from "@mui/material";
 
 function QuizSheet() {
     const {id} = useParams();
@@ -20,12 +22,22 @@ function QuizSheet() {
         setQuizzes(response.quizzes);
     }
 
+    const handleSubmit = () => {
+    };
+
     return (
-        <div>
-            {quizzes.map(quiz => {
-                return <Quiz quiz={quiz}/>
-            })}
-        </div>
+        <>
+            <Box margin="auto">
+                {quizzes.map(quiz => {
+                    return <Quiz quiz={quiz}/>
+                })}
+                <div style={{marginTop: 12, display: 'flex', justifyContent: 'center'}}>
+                    <Button variant="contained" color="primary" onClick={handleSubmit}>
+                        제출
+                    </Button>
+                </div>
+            </Box>
+        </>
     );
 }
 
