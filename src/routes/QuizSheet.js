@@ -29,7 +29,7 @@ function QuizSheet() {
         <>
             <Box margin="auto">
                 {quizzes.map(quiz => {
-                    return <Quiz quiz={quiz}/>
+                    return <Quiz key={quiz.id} quiz={quiz}/>
                 })}
                 <div style={{marginTop: 12, display: 'flex', justifyContent: 'center'}}>
                     <Button variant="contained" color="primary" onClick={handleSubmit}>
