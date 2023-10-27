@@ -15,14 +15,15 @@ const AddTerm = ({glossaryId, addTerm}) => {
         setValue(e.target.value);
     }
 
-    const handleAddTermButtonClick = () => {
-        const termId = call(`${API_BASE_URL}/glossaries/${glossaryId}/terms`, "POST", {
+    const handleAddTermButtonClick = async () => {
+        const termId = await call(`${API_BASE_URL}/glossaries/${glossaryId}/terms`, "POST", {
             word: word,
             description: description,
             keywords: [keyword1, keyword2, keyword3]
         });
+
         addTerm({
-            id: termId,
+            id: await termId.json(),
             word: word,
             description: description,
             keywords: [keyword1, keyword2, keyword3]
