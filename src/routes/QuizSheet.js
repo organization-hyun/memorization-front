@@ -4,9 +4,10 @@ import React, {useEffect, useState} from "react";
 import Quiz from "../component/Quiz";
 import Button from "@mui/material/Button";
 import {Box} from "@mui/material";
+import {call} from "../service/ApiService";
 
 function QuizSheet() {
-    const {id} = useParams();
+    const {glossaryId} = useParams();
 
     const [quizzes, setQuizzes] = useState([]);
 
@@ -16,13 +17,25 @@ function QuizSheet() {
 
     const getQuizzes = async () => {
         const response = await ((await fetch(
-            `${API_BASE_URL}/glossaries/${id}/quizzes`
+            `${API_BASE_URL}/glossaries/${glossaryId}/exam`
         )).json());
 
         setQuizzes(response.quizzes);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        /*const historyId = await ((await fetch(
+            `${API_BASE_URL}/glossaries/${id}/quiz`
+        )).json());*/
+        const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
+            answerSheet: [
+                {
+                    termId: "1",
+                    quizType: "DESCRIPTION",
+                    userAnswer: "용어1"
+                }
+            ]
+        })).json()).examHistoryId;
     };
 
     return (

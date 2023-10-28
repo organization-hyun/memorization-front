@@ -13,7 +13,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 // TODO 실제 용어집 이름 전달 필요
                 <Route path="/glossaries/:id" element={<Detail title={"테스트"}/>}/>
-                <Route path="/glossaries/:id/quiz" element={<QuizSheet/>}/>
+                <Route path="/glossaries/:glossaryId/quiz" element={<QuizSheet/>}/>
             </Routes>
         </BrowserRouter>
     );
