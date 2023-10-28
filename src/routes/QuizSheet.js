@@ -27,13 +27,13 @@ function QuizSheet() {
 
     const handleSubmit = async () => {
         const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
-            answerSheet: [
-                {
-                    termId: "1",
-                    quizType: "DESCRIPTION",
-                    userAnswer: "용어1"
+            answerSheet: quizzes.map(quiz => {
+                return {
+                    termId: quiz.id,
+                    quizType: quiz.type,
+                    userAnswer: ""
                 }
-            ]
+            })
         })).json()).examHistoryId;
 
         navigate(`/histories/${examHistoryId}`);
