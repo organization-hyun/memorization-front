@@ -25,13 +25,24 @@ function QuizSheet() {
         setQuizzes(response.quizzes);
     }
 
+    const setUserAnswer = (termId, userAnswer) => {
+        setQuizzes((prevQuizzes) => {
+            return prevQuizzes.map((prev) => {
+                if (prev.id === termId) {
+                    return { ...prev, userAnswer };
+                }
+                return prev;
+            });
+        });
+    }
+
     const handleSubmit = async () => {
         const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
             answerSheet: quizzes.map(quiz => {
                 return {
                     termId: quiz.id,
                     quizType: quiz.type,
-                    userAnswer: ""
+                    userAnswer: quiz.userAnswer
                 }
             })
         })).json()).examHistoryId;
@@ -43,7 +54,7 @@ function QuizSheet() {
         <>
             <Box margin="auto">
                 {quizzes.map(quiz => {
-                    return <Quiz key={quiz.id} quiz={quiz}/>
+                    return <Quiz key={quiz.id} quiz={quiz} setUserAnswer={setUserAnswer}/>
                 })}
                 <div style={{marginTop: 12, display: 'flex', justifyContent: 'center'}}>
                     <Button variant="contained" color="primary" onClick={handleSubmit}>

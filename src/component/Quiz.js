@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-function QuizComponent({quiz}) {
+function QuizComponent({quiz, setUserAnswer}) {
     const [answer, setAnswer] = useState('');
 
     const getQuizType = (quizType) => {
@@ -18,6 +18,7 @@ function QuizComponent({quiz}) {
 
     const handleChange = (event) => {
         setAnswer(event.target.value);
+        setUserAnswer(quiz.id, event.target.value);
     };
 
     return (
