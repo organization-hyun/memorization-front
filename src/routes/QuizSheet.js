@@ -5,8 +5,10 @@ import Quiz from "../component/Quiz";
 import Button from "@mui/material/Button";
 import {Box} from "@mui/material";
 import {call} from "../service/ApiService";
+import {useNavigate} from "react-router-dom";
 
 function QuizSheet() {
+    const navigate = useNavigate();
     const {glossaryId} = useParams();
 
     const [quizzes, setQuizzes] = useState([]);
@@ -24,9 +26,6 @@ function QuizSheet() {
     }
 
     const handleSubmit = async () => {
-        /*const historyId = await ((await fetch(
-            `${API_BASE_URL}/glossaries/${id}/quiz`
-        )).json());*/
         const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
             answerSheet: [
                 {
@@ -36,6 +35,8 @@ function QuizSheet() {
                 }
             ]
         })).json()).examHistoryId;
+
+        navigate(`/histories/${examHistoryId}`);
     };
 
     return (
