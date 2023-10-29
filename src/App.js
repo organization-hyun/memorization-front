@@ -15,7 +15,7 @@ function App() {
                 // TODO 실제 용어집 이름 전달 필요
                 <Route path="/glossaries/:id" element={<Detail title={"테스트"}/>}/>
                 <Route path="/glossaries/:glossaryId/quiz" element={<QuizSheet/>}/>
-                <Route path="/histories/:examHistoryId" element={<ExamHistory/>}/>
+                <Route path="/exam-histories/:examHistoryId" element={<ExamHistory/>}/>
             </Routes>
         </BrowserRouter>
     );
