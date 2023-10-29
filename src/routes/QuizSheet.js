@@ -29,7 +29,7 @@ function QuizSheet() {
         setQuizzes((prevQuizzes) => {
             return prevQuizzes.map((prev) => {
                 if (prev.id === termId) {
-                    return { ...prev, userAnswer };
+                    return {...prev, userAnswer};
                 }
                 return prev;
             });
@@ -37,8 +37,8 @@ function QuizSheet() {
     }
 
     const handleSubmit = async () => {
-        const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
-            answerSheet: quizzes.map(quiz => {
+        const examHistoryId = await (await (await call(`${API_BASE_URL}/exam-history`, "POST", {
+            examHistoryItems: quizzes.map(quiz => {
                 return {
                     termId: quiz.id,
                     quizType: quiz.type,
