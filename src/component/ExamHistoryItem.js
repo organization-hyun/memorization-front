@@ -19,6 +19,7 @@ export default function ExamHistoryItem({examHistoryItem}) {
         <Box maxWidth={400} margin="auto" marginTop={3} padding={2} border={1} borderColor="grey.400">
             <Typography variant="h6">{getQuizType(examHistoryItem.type)}</Typography>
             <Typography variant="body1">{examHistoryItem.question}</Typography>
+            <div>{examHistoryItem.isCorrect ? "" : "!"}</div>
             <TextField
                 fullWidth
                 label="Answer"
