@@ -47,7 +47,7 @@ function QuizSheet() {
             })
         })).json()).examHistoryId;
 
-        navigate(`/histories/${examHistoryId}`);
+        navigate(`/exam-histories/${examHistoryId}`);
     };
 
     return (
