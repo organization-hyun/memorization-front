@@ -37,8 +37,8 @@ function QuizSheet() {
     }
 
     const handleSubmit = async () => {
-        const examHistoryId = await (await (await call(`${API_BASE_URL}/exam-histories`, "POST", {
-            examHistoryItems: quizzes.map(quiz => {
+        const examHistoryId = await (await (await call(`${API_BASE_URL}/glossaries/${glossaryId}/exam`, "POST", {
+            answerSheet: quizzes.map(quiz => {
                 return {
                     termId: quiz.id,
                     quizType: quiz.type,
