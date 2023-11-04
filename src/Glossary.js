@@ -9,12 +9,26 @@ const Glossary = ({glossary, remove}) => {
     const [id] = useState(glossary.id);
     const [title] = useState(glossary.title);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const deleteEventHandler = () => {
-        remove(id);
+        setIsModalOpen(true);
     }
 
-    return (
-        <Grid container>
+    const confirmDelete = () => {
+        remove(id);
+        setIsModalOpen(false);
+    }
+
+    return (<>
+        <div>
+            {isModalOpen && (<div className="modal">
+                <p>정말로 삭제하시겠습니까?</p>
+                <button onClick={confirmDelete}>예</button>
+                <button onClick={() => setIsModalOpen(false)}>취소</button>
+            </div>)}
+        </div>
+        {!isModalOpen && (<Grid container>
             <Grid xs={10} md={10} item style={{paddingLeft: 16, paddingRight: 16}}>
                 <Link to={`/glossaries/${id}`}>
                     <ListItemText>
@@ -42,8 +56,8 @@ const Glossary = ({glossary, remove}) => {
                     <Delete/>
                 </IconButton>
             </Grid>
-        </Grid>
-    );
+        </Grid>)}
+    </>);
 }
 
 export default Glossary;
