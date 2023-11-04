@@ -2,12 +2,12 @@ import {useParams} from "react-router";
 import {API_BASE_URL} from "../app-config";
 import React, {useEffect, useState} from "react";
 import {Box} from "@mui/material";
-import ExamHistoryItem from "../component/ExamHistoryItem";
+import QuizHistory from "../component/QuizHistory";
 
-export default function ExamHistory() {
+export default function QuizHistories() {
     const {examHistoryId} = useParams();
 
-    const [examHistoryItems, setExamHistoryItems] = useState([]);
+    const [quizHistories, setQuizHistories] = useState([]);
 
     useEffect(() => {
         getQuizzes();
@@ -15,17 +15,17 @@ export default function ExamHistory() {
 
     const getQuizzes = async () => {
         const response = await ((await fetch(
-            `${API_BASE_URL}/exam-histories/${examHistoryId}/items`
+            `${API_BASE_URL}/exam/history/${examHistoryId}`
         )).json());
 
-        setExamHistoryItems(response.examHistoryItems);
+        setQuizHistories(response.quizHistories);
     }
 
     return (
         <>
             <Box margin="auto">
-                {examHistoryItems.map(examHistoryItem => {
-                    return <ExamHistoryItem key={examHistoryItem.id} examHistoryItem={examHistoryItem}/>
+                {quizHistories.map(quizHistory => {
+                    return <QuizHistory key={quizHistory.id} quizHistory={quizHistory}/>
                 })}
             </Box>
         </>
