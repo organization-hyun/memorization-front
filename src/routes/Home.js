@@ -75,7 +75,6 @@ function Home() {
                                         fullWidth
                                     />
                                 </div>
-                                {/*<div style={{margin: 16}} key={examHistory.id}>{examHistory.title}</div>*/}
                             </Link>
                         ))}
                     </List>
