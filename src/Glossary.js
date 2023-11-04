@@ -13,15 +13,6 @@ const Glossary = ({glossary, remove}) => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [examModalOpen, setExamModalOpen] = useState(false);
 
-    const deleteEventHandler = () => {
-        setDeleteModalOpen(true);
-    }
-
-    const confirmDelete = () => {
-        remove(id);
-        setDeleteModalOpen(false);
-    }
-
     const handleExamTypeOpen = () => {
         setExamModalOpen(true);
     }
@@ -30,19 +21,24 @@ const Glossary = ({glossary, remove}) => {
         setExamModalOpen(false);
     };
 
+    const handleDeleteButtonOpen = () => {
+        setDeleteModalOpen(true);
+    }
+
+    const handleDeleteButtonClose = () => {
+        setDeleteModalOpen(false);
+    };
+
     const handleButtonClick = (examType) => {
         navigate(`/glossaries/${id}/quiz/${examType}`);
     }
 
+    const confirmDelete = () => {
+        remove(id);
+    }
+
     return (<>
-        <div>
-            {deleteModalOpen && (<div className="modal">
-                <p>정말로 삭제하시겠습니까?</p>
-                <button onClick={confirmDelete}>예</button>
-                <button onClick={() => setDeleteModalOpen(false)}>취소</button>
-            </div>)}
-        </div>
-        {!deleteModalOpen && (<Grid container>
+        <Grid container>
             <Grid xs={10} md={10} item style={{paddingLeft: 16, paddingRight: 16}}>
                 <Link to={`/glossaries/${id}`}>
                     <ListItemText>
@@ -77,11 +73,22 @@ const Glossary = ({glossary, remove}) => {
                 </Dialog>
             </Grid>
             <Grid xs={1} md={1} item>
-                <IconButton onClick={deleteEventHandler} aria-label="delete">
+                <IconButton onClick={(handleDeleteButtonOpen)}>
                     <Delete/>
                 </IconButton>
+                <Dialog open={deleteModalOpen} onClose={handleDeleteButtonClose}>
+                    <DialogContent>
+                        <DialogContentText>
+                            정말로 삭제하시겠습니까?
+                        </DialogContentText>
+                        <DialogActions>
+                            <Button onClick={confirmDelete}>예</Button>
+                            <Button onClick={handleDeleteButtonClose}>아니오</Button>
+                        </DialogActions>
+                    </DialogContent>
+                </Dialog>
             </Grid>
-        </Grid>)}
+        </Grid>
     </>);
 }
 
