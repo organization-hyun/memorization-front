@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 
 function QuizSheet() {
     const navigate = useNavigate();
-    const {glossaryId} = useParams();
+    const {glossaryId, examType} = useParams();
 
     const [quizzes, setQuizzes] = useState([]);
 
@@ -19,7 +19,7 @@ function QuizSheet() {
 
     const getQuizzes = async () => {
         const response = await ((await fetch(
-            `${API_BASE_URL}/glossaries/${glossaryId}/exam`
+            `${API_BASE_URL}/glossaries/${glossaryId}/exam/${examType}`
         )).json());
 
         setQuizzes(response.quizzes);
