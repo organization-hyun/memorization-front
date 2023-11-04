@@ -6,8 +6,8 @@ import {Container} from "@mui/material";
 import AddTerm from "../term/AddTerm";
 import GlossarySetting from "../component/GlossarySetting";
 
-function Detail({title}) {
-    const {id} = useParams();
+function Detail() {
+    const {id,title} = useParams();
 
     const [terms, setTerms] = useState([]);
 

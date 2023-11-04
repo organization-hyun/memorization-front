@@ -12,8 +12,8 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login/>}></Route>
                 <Route path="/" element={<Home/>}/>
-                // TODO 실제 용어집 이름 전달 필요
-                <Route path="/glossaries/:id" element={<Detail title={"테스트"}/>}/>
+                // TODO title 전달 방법 알아보기
+                <Route path="/glossaries/:id/:title" element={<Detail/>}/>
                 <Route path="/glossaries/:glossaryId/quiz/:examType" element={<QuizSheet/>}/>
                 <Route path="/exam-histories/:examHistoryId" element={<QuizHistories/>}/>
             </Routes>

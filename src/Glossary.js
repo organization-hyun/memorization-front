@@ -40,7 +40,7 @@ const Glossary = ({glossary, remove}) => {
     return (<>
         <Grid container>
             <Grid xs={10} md={10} item style={{paddingLeft: 16, paddingRight: 16}}>
-                <Link to={`/glossaries/${id}`}>
+                <Link to={`/glossaries/${id}/${title}`}>
                     <ListItemText>
                         <InputBase
                             inputProps={{
