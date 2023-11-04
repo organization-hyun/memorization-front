@@ -18,12 +18,11 @@ function Home() {
         setGlossaries(response.glossaries);
     }
 
-    // TODO 응시 이력 리스트 조회 api 반영
     const getExamHistories = async () => {
-        /*const response = await ((await fetch(
-            `${API_BASE_URL}/exam-histories`
+        const response = await ((await fetch(
+            `${API_BASE_URL}/exam/histories`
         )).json());
-        setExamHistories(response.examHistories);*/
+        setExamHistories(response.examHistories);
     }
 
     useEffect(() => {
