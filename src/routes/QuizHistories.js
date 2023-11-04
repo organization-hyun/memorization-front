@@ -15,7 +15,7 @@ export default function QuizHistories() {
 
     const getQuizzes = async () => {
         const response = await ((await fetch(
-            `${API_BASE_URL}/exam/history/${examHistoryId}`
+            `${API_BASE_URL}/exam/histories/${examHistoryId}`
         )).json());
 
         setQuizHistories(response.quizHistories);
