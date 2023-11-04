@@ -23,8 +23,8 @@ function QuizComponent({quiz, setUserAnswer}) {
 
     return (
         <Box maxWidth={400} margin="auto" marginTop={3} padding={2} border={1} borderColor="grey.400">
-            <Typography variant="body1">{getQuizType(quiz.type)}</Typography>
-            <Typography variant="body1">{quiz.quizText}</Typography>
+            <Typography variant="body1">{getQuizType(quiz.quizType)}</Typography>
+            <Typography variant="body1">{quiz.question}</Typography>
             <TextField
                 fullWidth
                 label="Answer"
