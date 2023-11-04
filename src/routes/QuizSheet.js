@@ -41,7 +41,7 @@ function QuizSheet() {
             answerSheet: quizzes.map(quiz => {
                 return {
                     termId: quiz.id,
-                    quizType: quiz.type,
+                    quizType: quiz.quizType,
                     userAnswer: quiz.userAnswer
                 }
             })
