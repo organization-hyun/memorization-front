@@ -4,36 +4,39 @@ import {API_BASE_URL} from "../app-config";
 import {call} from "../service/ApiService";
 
 const AddTerm = ({glossaryId, addTerm}) => {
+    const [word, setWord] = useState("");
+    const [description, setDescription] = useState("");
+    const [keywords, setKeywords] = useState([""]);
 
-    const [word, setWord] = useState('');
-    const [description, setDescription] = useState('');
-    const [keyword1, setKeyword1] = useState('');
-    const [keyword2, setKeyword2] = useState('');
-    const [keyword3, setKeyword3] = useState('');
+    const handleInputChange = (e, index) => {
+        const newKeywords = [...keywords];
+        newKeywords[index] = e.target.value;
+        setKeywords(newKeywords);
 
-    const handleInputChange = (e, setValue) => {
-        setValue(e.target.value);
-    }
+        if (index === newKeywords.length - 1 && e.target.value.trim() !== "") {
+            newKeywords.push("");
+            setKeywords(newKeywords);
+        }
+    };
 
     const handleAddTermButtonClick = async () => {
         const termId = await call(`${API_BASE_URL}/glossaries/${glossaryId}/terms`, "POST", {
             word: word,
             description: description,
-            keywords: [keyword1, keyword2, keyword3]
+            keywords: keywords.filter((keyword) => keyword.trim() !== ""),
         });
 
         addTerm({
             id: await termId.json(),
             word: word,
             description: description,
-            keywords: [keyword1, keyword2, keyword3]
+            keywords: keywords.filter((keyword) => keyword.trim() !== ""),
         });
-        setWord('');
-        setDescription('');
-        setKeyword1('');
-        setKeyword2('');
-        setKeyword3('');
-    }
+
+        setWord("");
+        setDescription("");
+        setKeywords([""]);
+    };
 
     return (
         <Paper style={{margin: 16, padding: 16}}>
@@ -45,7 +48,7 @@ const AddTerm = ({glossaryId, addTerm}) => {
                         size="small"
                         variant="outlined"
                         value={word}
-                        onChange={(e) => handleInputChange(e, setWord)}
+                        onChange={(e) => setWord(e.target.value)}
                     />
                     <TextField
                         placeholder="설명"
@@ -53,34 +56,26 @@ const AddTerm = ({glossaryId, addTerm}) => {
                         size="small"
                         variant="outlined"
                         value={description}
-                        onChange={(e) => handleInputChange(e, setDescription)}/>
-                    <TextField
-                        placeholder="키워드1"
-                        multiline
-                        size="small"
-                        variant="outlined"
-                        value={keyword1}
-                        onChange={(e) => handleInputChange(e, setKeyword1)}/>
-                    <TextField
-                        placeholder="키워드2"
-                        multiline
-                        size="small"
-                        variant="outlined"
-                        value={keyword2}
-                        onChange={(e) => handleInputChange(e, setKeyword2)}/>
-                    <TextField
-                        placeholder="키워드3"
-                        multiline
-                        size="small"
-                        variant="outlined"
-                        value={keyword3}
-                        onChange={(e) => handleInputChange(e, setKeyword3)}/>
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    {keywords.map((keyword, index) => (
+                        <TextField
+                            key={index}
+                            placeholder={`키워드${index + 1}`}
+                            multiline
+                            size="small"
+                            variant="outlined"
+                            value={keyword}
+                            onChange={(e) => handleInputChange(e, index)}
+                        />
+                    ))}
                 </Grid>
                 <Grid xs={1} md={1} item>
-                    <Button fullWidth
-                            color="primary"
-                            variant="outlined"
-                            onClick={handleAddTermButtonClick}
+                    <Button
+                        fullWidth
+                        color="primary"
+                        variant="outlined"
+                        onClick={handleAddTermButtonClick}
                     >
                         등록
                     </Button>
@@ -88,7 +83,6 @@ const AddTerm = ({glossaryId, addTerm}) => {
             </Grid>
         </Paper>
     );
-
-}
+};
 
 export default AddTerm;
