@@ -34,8 +34,8 @@ function TermsTable({deleteTerm, terms}) {
                                 ))}
                             </TableCell>
                             <TableCell>
-                                <IconButton aria-label="delete">
-                                    <Delete onClick={() => handleDeleteButtonClick(term.id)}/>
+                                <IconButton aria-label="delete" onClick={() => handleDeleteButtonClick(term.id)}>
+                                    <Delete/>
                                 </IconButton>
                             </TableCell>
                         </TableRow>
