@@ -36,7 +36,7 @@ function Detail() {
         <Container>
             <GlossarySetting title={title}/>
             <AddTerm glossaryId={id} addTerm={addTerm}/>
-            <TermsTable deleteTerm={deleteTerm} headers={["word", "description", "keyword1", "keyword2", "keyword3"]} terms={terms}/>
+            <TermsTable deleteTerm={deleteTerm} terms={terms}/>
         </Container>
     )
         ;
