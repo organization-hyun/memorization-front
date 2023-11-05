@@ -34,7 +34,7 @@ function Detail() {
 
     return (
         <Container>
-            <GlossarySetting title={title}/>
+            <GlossarySetting glossaryId={id} title={title}/>
             <AddTerm glossaryId={id} addTerm={addTerm}/>
             <TermsTable deleteTerm={deleteTerm} terms={terms}/>
         </Container>
