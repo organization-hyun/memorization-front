@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Glossary from "../component/Glossary";
-import {Container, InputBase, List, Paper} from "@material-ui/core";
+import {Container, List, Paper} from "@material-ui/core";
 import AddGlossary from "../component/AddGlossary";
 import {call} from "../service/ApiService";
 import {API_BASE_URL} from "../app-config";
-import {Link} from "react-router-dom";
 import ExamHistory from "../component/ExamHistory";
 
 function Home() {
@@ -41,10 +40,16 @@ function Home() {
         })
     }
 
-    const remove = (id) => {
+    const deleteGlossary = (id) => {
         call(`${API_BASE_URL}/glossaries/${id}`, "DELETE", id);
         const newGlossaries = glossaries.filter((g) => g.id !== id);
         setGlossaries(newGlossaries);
+    }
+
+    const deleteExamHistory = (id) => {
+        call(`${API_BASE_URL}/exam/histories/${id}`, "DELETE", id);
+        const newExamHistories = examHistories.filter((h) => h.id !== id);
+        setExamHistories(newExamHistories);
     }
 
     return (
@@ -54,7 +59,7 @@ function Home() {
                 <Paper style={{margin: 16}}>
                     <List>
                         {glossaries.map((v) => (
-                            <Glossary key={v.id} glossary={v} remove={remove}/>
+                            <Glossary key={v.id} glossary={v} remove={deleteGlossary}/>
                         ))}
                     </List>
                 </Paper>
@@ -63,8 +68,8 @@ function Home() {
                 <Paper style={{margin: 16}}>
                     <h1 style={{margin: 12}}>History</h1>
                     <List>
-                        {examHistories.map((examHistory) => (
-                            <ExamHistory key={examHistory.id} examHistory={examHistory}/>
+                        {examHistories.map((e) => (
+                            <ExamHistory key={e.id} examHistory={e} remove={deleteExamHistory}/>
                         ))}
                     </List>
                 </Paper>
