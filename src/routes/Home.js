@@ -5,6 +5,7 @@ import AddGlossary from "../component/AddGlossary";
 import {call} from "../service/ApiService";
 import {API_BASE_URL} from "../app-config";
 import {Link} from "react-router-dom";
+import ExamHistory from "../component/ExamHistory";
 
 function Home() {
 
@@ -63,19 +64,7 @@ function Home() {
                     <h1 style={{margin: 12}}>History</h1>
                     <List>
                         {examHistories.map((examHistory) => (
-                            <Link to={`/exam-histories/${examHistory.id}`} key={examHistory.id}>
-                                <div style={{margin: 12}}>
-                                    <InputBase
-                                        inputProps={{
-                                            "aria-label": "naked",
-                                        }}
-                                        type="text"
-                                        value={examHistory.title}
-                                        multiline
-                                        fullWidth
-                                    />
-                                </div>
-                            </Link>
+                            <ExamHistory key={examHistory.id} examHistory={examHistory}/>
                         ))}
                     </List>
                 </Paper>
