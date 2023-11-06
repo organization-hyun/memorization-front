@@ -17,10 +17,9 @@ export default function QuizHistory({quizHistory}) {
 
     return (
         <Box maxWidth={400} margin="auto" marginTop={3} padding={2} border={1}
-             borderColor={quizHistory.isCorrect ? "grey.400" : "red"}>
+             borderColor={quizHistory.isCorrect ? "green" : "red"}>
             <Typography variant="h6">{getQuizType(quizHistory.type)}</Typography>
             <Typography variant="body1">{quizHistory.question}</Typography>
-            <div>{quizHistory.isCorrect ? "정답" : "오답"}</div>
             <TextField
                 fullWidth
                 label="Answer"
