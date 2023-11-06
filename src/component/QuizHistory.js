@@ -26,6 +26,7 @@ export default function QuizHistory({quizHistory}) {
                 variant="outlined"
                 value={quizHistory.userAnswer}
                 disabled
+                multiline
             />
         </Box>
     );

@@ -31,6 +31,7 @@ function QuizComponent({quiz, setUserAnswer}) {
                 variant="outlined"
                 value={answer}
                 onChange={handleChange}
+                multiline
             />
         </Box>
     );
