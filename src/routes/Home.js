@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Glossary from "../Glossary";
+import Glossary from "../component/Glossary";
 import {Container, InputBase, List, Paper} from "@material-ui/core";
-import AddGlossary from "../AddGlossary";
+import AddGlossary from "../component/AddGlossary";
 import {call} from "../service/ApiService";
 import {API_BASE_URL} from "../app-config";
 import {Link} from "react-router-dom";
