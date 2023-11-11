@@ -57,8 +57,10 @@ function Home() {
             <AddGlossary glossaries={glossaries} add={add}/>
             <div>
                 <Paper style={{margin: 16}}>
+                    <h2 style={{margin: 12}}>용어집</h2>
                     <List>
                         {glossaries.map((v) => (
+                            v.glossaryType === "BASIC" &&
                             <Glossary key={v.id} glossary={v} remove={deleteGlossary}/>
                         ))}
                     </List>
@@ -66,7 +68,18 @@ function Home() {
             </div>
             <div>
                 <Paper style={{margin: 16}}>
-                    <h1 style={{margin: 12}}>History</h1>
+                    <h2 style={{margin: 12}}>오답노트</h2>
+                    <List>
+                        {glossaries.map((v) => (
+                            v.glossaryType === "CORRECTION" &&
+                            <Glossary key={v.id} glossary={v} remove={deleteGlossary}/>
+                        ))}
+                    </List>
+                </Paper>
+            </div>
+            <div>
+                <Paper style={{margin: 16}}>
+                    <h2 style={{margin: 12}}>History</h2>
                     <List>
                         {examHistories.map((e) => (
                             <ExamHistory key={e.id} examHistory={e} remove={deleteExamHistory}/>
