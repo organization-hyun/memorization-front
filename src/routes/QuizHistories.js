@@ -3,6 +3,7 @@ import {API_BASE_URL} from "../app-config";
 import React, {useEffect, useState} from "react";
 import {Box} from "@mui/material";
 import QuizHistory from "../component/QuizHistory";
+import GoBackButton from "../common/GoBackButton";
 
 export default function QuizHistories() {
     const {examHistoryId} = useParams();
@@ -23,6 +24,7 @@ export default function QuizHistories() {
 
     return (
         <>
+            <GoBackButton/>
             <Box margin="auto">
                 {quizHistories.map(quizHistory => {
                     return <QuizHistory key={quizHistory.id} quizHistory={quizHistory}/>
