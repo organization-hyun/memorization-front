@@ -1,9 +1,9 @@
-import {Grid, IconButton, Paper} from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 import {Button, TextField} from "@material-ui/core";
 import React, {useState} from "react";
 import {call} from "../service/ApiService";
 import {API_BASE_URL} from "../app-config";
-import {ArrowBack} from "@material-ui/icons";
+import GoBackButton from "../common/GoBackButton";
 
 // TODO 추후 로직 추가
 const GlossarySetting = ({glossaryId, title}) => {
@@ -19,12 +19,6 @@ const GlossarySetting = ({glossaryId, title}) => {
             title: glossaryTitle
         });
     }
-
-    const GoBackButton = () => (
-        <IconButton onClick={() => window.history.back()}>
-            <ArrowBack/>
-        </IconButton>
-    );
 
     return (
         <div>
